@@ -4,13 +4,13 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        List<Integer> inputs = new ArrayList<>();
+        List<Integer> tests = new ArrayList<>();
         while (sc.hasNextInt()) {
-            inputs.add(sc.nextInt());
+            tests.add(sc.nextInt());
         }
 
         int maxN = 0;
-        for (int n : inputs) maxN = Math.max(maxN, n);
+        for (int n : tests) maxN = Math.max(maxN, n);
 
         long[] f = new long[maxN + 1];
         long[] z = new long[maxN + 1];
@@ -25,11 +25,11 @@ public class Main {
         }
 
         for (int i = 3; i <= maxN; i++) {
-            z[i] = 1L << (i - 2);      // 2^(i-2)
+            z[i] = 1L << (i - 2);
             f[i] = f[i - 1] + z[i - 2];
         }
 
-        for (int n : inputs) {
+        for (int n : tests) {
             System.out.println(f[n]);
         }
 
