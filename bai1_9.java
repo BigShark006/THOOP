@@ -1,26 +1,28 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
 import java.util.Scanner;
 
-public class bai1_9 {
+public class Main {
     public static void main(String[] args) {
         try (Scanner scanner = new Scanner(System.in)) {
-            System.out.print("Nhap so km da di: ");
-            int soKm = scanner.nextInt();
+            double soKm = scanner.nextDouble();
 
-            int tienCuoc;
+            double tienCuoc;
             if (soKm <= 0) {
-                System.out.println("So km khong hop le.");
                 return;
             } else if (soKm <= 1) {
                 tienCuoc = 5000;
             } else if (soKm <= 30) {
-                tienCuoc = 5000 + (soKm - 1) * 4000;
+                tienCuoc = 5000 + (soKm - 1)* 5 * 800;
             } else {
-                tienCuoc = 5000 + 29 * 4000 + (soKm - 30) * 3000;
+                tienCuoc = 5000 + 29 * 5 * 800 + (soKm - 30) * 3000;
             }
 
-            System.out.println("Tien cuoc taxi la: " + tienCuoc + " VND");
+            System.out.println(Math.round(tienCuoc));
         }
     }
 }
 
-//Tinh tien cuoc taxi
