@@ -1,28 +1,29 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
 import java.util.Scanner;
 
-public class bai1_3 {
+public class Main {
     public static void main(String[] args) {
         int a, b, c;
         Scanner sc = new Scanner(System.in);
-        System.out.print("Nhap so nguyen duong a: ");
         a = sc.nextInt();
-        System.out.print("Nhap so nguyen duong b: ");  
         b = sc.nextInt();
-        System.out.print("Nhap so nguyen duong c: ");
         c = sc.nextInt();
         sc.close();
 
         if(laTamgiac(a, b, c)){
-            System.out.println("3 so vua nhap tao thanh 1 tam giac");
             if(laTamgiacDeu(a, b, c)){
-                System.out.println("Tam giac deu");
+                System.out.println("Deu");
             } else if(laTamgiacCan(a, b, c)){
-                System.out.println("Tam giac can");
+                System.out.println("Can");
             } else {
-                System.out.println("Tam giac vuong");
+                System.out.println("Vuong");
             }
         } else {
-            System.out.println("3 so vua nhap khong tao thanh 1 tam giac");
+            System.out.println("Khong hop le");
         }
     }    
 
@@ -53,5 +54,3 @@ public class bai1_3 {
     
     }
 }
-
-//Nhap 3 so nguyen duong --> can, vuong, deu
