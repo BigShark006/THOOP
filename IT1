@@ -1,17 +1,11 @@
 import java.util.*;
 
 public class Main {
-    static long calc(int n) {
-        if (n <= 1) return 0;
-        if (n == 2) return 1;
 
-        long g1 = 2, g2 = 3; // g[1], g[2]
-        for (int i = 3; i <= n; i++) {
-            long g = g1 + g2;
-            g1 = g2;
-            g2 = g;
-        }
-        return (1L << n) - g2;
+    static long solve(int n) {
+        if (n == 1) return 0;
+        if (n == 2) return 1;
+        return (1L << (n - 2)) - 1;
     }
 
     public static void main(String[] args) {
@@ -19,7 +13,7 @@ public class Main {
         int a = sc.nextInt();
         int b = sc.nextInt();
 
-        System.out.println(calc(a));
-        System.out.println(calc(b));
+        System.out.println(solve(a));
+        System.out.println(solve(b));
     }
 }
