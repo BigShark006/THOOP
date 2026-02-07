@@ -3,28 +3,36 @@ import java.util.*;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
+        List<Integer> tests = new ArrayList<>();
+        int maxN = 0;
 
-        int t = sc.nextInt(); // số test
-
-        while (t-- > 0) {
+        while (sc.hasNextInt()) {
             int n = sc.nextInt();
+            tests.add(n);
+            if (n > maxN) maxN = n;
+        }
 
-            if (n <= 2) {
-                System.out.println(0);
-            } else {
-                long[] f = new long[n + 1];
-                long[] z = new long[n + 1];
+        // f[n]: số chuỗi độ dài n CÓ "00"
+        // g[n]: số chuỗi độ dài n KHÔNG có "00"
+        long[] f = new long[maxN + 1];
+        long[] g = new long[maxN + 1];
 
-                f[1] = 0; z[1] = 0;
-                f[2] = 0; z[2] = 1;
+        if (maxN >= 1) {
+            g[1] = 2; // 0, 1
+            f[1] = 0;
+        }
+        if (maxN >= 2) {
+            g[2] = 3; // 01,10,11
+            f[2] = 1; // 00
+        }
 
-                for (int i = 3; i <= n; i++) {
-                    z[i] = 1L << (i - 2);
-                    f[i] = f[i - 1] + z[i - 2];
-                }
+        for (int i = 3; i <= maxN; i++) {
+            g[i] = g[i - 1] + g[i - 2];
+            f[i] = (1L << i) - g[i];
+        }
 
-                System.out.println(f[n]);
-            }
+        for (int n : tests) {
+            System.out.println(f[n]);
         }
 
         sc.close();
