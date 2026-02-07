@@ -1,32 +1,19 @@
-import java.io.*;
-import java.util.*;
-import java.text.*;
-import java.math.*;
-import java.util.regex.*;
 import java.util.Scanner;
 
 public class Main {
-    public static int fib(int n) {
-        if(n<=1) {
-            return n;
-        }
-        return fib(n-1) + fib(n-2);
-    }
-    
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        
-        int n = sc.nextInt();
-        
-        int i=0;
-        while(true) {
-            int f = fib(i);
-            if(f>=n) {
-                break;
+
+        while (sc.hasNextInt()) {
+            int n = sc.nextInt();
+
+            if (n <= 1) {
+                System.out.println(0);
+            } else {
+                System.out.println((int)Math.pow(2, n - 2));
             }
-            System.out.print(f+ " ");
-            i++;
         }
+
         sc.close();
     }
 }
