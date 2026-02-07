@@ -1,24 +1,37 @@
 import java.util.*;
+import java.math.BigInteger;
 
 public class Main {
-
-    static long fib(int n) {
-        if (n <= 2) return 1;
-        long a = 1, b = 1;
-        for (int i = 3; i <= n; i++) {
-            long c = a + b;
-            a = b;
-            b = c;
-        }
-        return b;
-    }
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
+        List<Integer> tests = new ArrayList<>();
+        int maxN = 0;
+
         while (sc.hasNextInt()) {
             int n = sc.nextInt();
-            System.out.println(fib(n));
+            tests.add(n);
+            maxN = Math.max(maxN, n);
+        }
+
+        if (maxN < 2) {
+            for (int n : tests) {
+                System.out.println(0);
+            }
+            return;
+        }
+
+        BigInteger[] f = new BigInteger[maxN + 1];
+        f[0] = BigInteger.ZERO;
+        f[1] = BigInteger.ZERO;
+        f[2] = BigInteger.ONE;
+
+        for (int i = 3; i <= maxN; i++) {
+            f[i] = f[i - 1].add(f[i - 2]);
+        }
+
+        for (int n : tests) {
+            System.out.println(f[n]);
         }
     }
 }
