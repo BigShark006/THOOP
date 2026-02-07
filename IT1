@@ -1,40 +1,25 @@
 import java.util.*;
 
 public class Main {
+    static long calc(int n) {
+        if (n <= 1) return 0;
+        if (n == 2) return 1;
+
+        long g1 = 2, g2 = 3; // g[1], g[2]
+        for (int i = 3; i <= n; i++) {
+            long g = g1 + g2;
+            g1 = g2;
+            g2 = g;
+        }
+        return (1L << n) - g2;
+    }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        List<Integer> tests = new ArrayList<>();
-        int maxN = 0;
+        int a = sc.nextInt();
+        int b = sc.nextInt();
 
-        while (sc.hasNextInt()) {
-            int n = sc.nextInt();
-            tests.add(n);
-            if (n > maxN) maxN = n;
-        }
-
-        // f[n]: số chuỗi độ dài n CÓ "00"
-        // g[n]: số chuỗi độ dài n KHÔNG có "00"
-        long[] f = new long[maxN + 1];
-        long[] g = new long[maxN + 1];
-
-        if (maxN >= 1) {
-            g[1] = 2; // 0, 1
-            f[1] = 0;
-        }
-        if (maxN >= 2) {
-            g[2] = 3; // 01,10,11
-            f[2] = 1; // 00
-        }
-
-        for (int i = 3; i <= maxN; i++) {
-            g[i] = g[i - 1] + g[i - 2];
-            f[i] = (1L << i) - g[i];
-        }
-
-        for (int n : tests) {
-            System.out.println(f[n]);
-        }
-
-        sc.close();
+        System.out.println(calc(a));
+        System.out.println(calc(b));
     }
 }
