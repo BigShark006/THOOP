@@ -1,16 +1,36 @@
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
+        List<Integer> inputs = new ArrayList<>();
         while (sc.hasNextInt()) {
-            int n = sc.nextInt();
-            if (n <= 2) {
-                System.out.println(1);
-            } else {
-                System.out.println((1L << (n - 2)) - 1);
-            }
+            inputs.add(sc.nextInt());
+        }
+
+        int maxN = 0;
+        for (int n : inputs) maxN = Math.max(maxN, n);
+
+        long[] f = new long[maxN + 1];
+        long[] z = new long[maxN + 1];
+
+        if (maxN >= 1) {
+            f[1] = 0;
+            z[1] = 0;
+        }
+        if (maxN >= 2) {
+            f[2] = 0;
+            z[2] = 1;
+        }
+
+        for (int i = 3; i <= maxN; i++) {
+            z[i] = 1L << (i - 2);      // 2^(i-2)
+            f[i] = f[i - 1] + z[i - 2];
+        }
+
+        for (int n : inputs) {
+            System.out.println(f[n]);
         }
 
         sc.close();
