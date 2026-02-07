@@ -4,18 +4,13 @@ public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
 
-        long[] f = new long[1001];
-        f[1] = 0;
-        f[2] = 1;
-        f[3] = 1;
-
-        for (int i = 4; i <= 1000; i++) {
-            f[i] = f[i - 1] + f[i - 3];
-        }
-
         while (sc.hasNextInt()) {
             int n = sc.nextInt();
-            System.out.println(f[n]);
+            if (n <= 2) {
+                System.out.println(1);
+            } else {
+                System.out.println((1L << (n - 2)) - 1);
+            }
         }
 
         sc.close();
